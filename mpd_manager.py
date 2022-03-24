@@ -35,7 +35,7 @@ def determine_difference(play_time, sys_uptime):
     	top_online_seconds = int(online_seconds) + 15
     
     if (system_time[2][0] == "0"):
-    	system_secnds = system_time[2][1]
+    	system_seconds = system_time[2][1]
     else:
     	system_seconds = system_time[2]
     
@@ -62,23 +62,7 @@ def determine_difference(play_time, sys_uptime):
     	command = "sudo reboot"
     	reboot_p = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
     	(raw_output, err_reboot) = p.communicate()
-    else:
-        now = datetime.now()
-        now = now.strftime("%m/%d/%Y %H:%M:%S")
-        
-        site = 'DFW66'
-        url = 'https://api.l33ttech.com/api/monitoring/txre/music_receiver.php?auth_key=yUsb028dbHoP9A0'
-        data = {
-                'id':           site,
-                'status_code':  '200',
-                'music_on':     'Online',
-                'backup_on':    'Disabled',
-                'last_seen':    now,
-                'name':         '1250 Mockingbird'
-        }
-
-        r = requests.post(url, data=data)
-        print("Status signal successfully sent!")
+    
 
 def get_mpc_stats():
     try:
